@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "vida-nova-songs",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "us-central1"
+      }
+    }
+  ]
+}

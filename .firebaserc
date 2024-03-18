@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "vida-nova-songs": {
+      "hosting": {
+        "vida-nova-songs": [
+          "vida-nova-songs"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "vida-nova-songs"
+  }
+}

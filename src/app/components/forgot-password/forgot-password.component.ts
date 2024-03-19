@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrl: './forgot-password.component.scss'
 })
-export class RegisterComponent {
+export class ForgotPasswordComponent {
 
-  public formRegister!: FormGroup;
+  public formForgot!: FormGroup;
   public login?: Login;
 
   constructor(private authService: AuthService,
@@ -23,15 +23,14 @@ export class RegisterComponent {
     private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.formRegister = this.formBuilder.group({
+    this.formForgot = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email] ],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)] ],
     });
   }
 
-  registrar() {
-    this.authService.register(this.formRegister.value.email, this.formRegister.value.password)
+  forgotPassword() {
+    this.authService.forgotPassword(this.formForgot.value.email)
+    this.formForgot.reset();
   }
-
 
 }

@@ -3,83 +3,94 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GoogleAuthProvider } from '@angular/fire/auth';
+import { ShareService } from './share.service';
+import { DadosUsuario } from '../../models/dados-usuario.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  private dadosUsuario: DadosUsuario = { nome: "", img: "", logado: false, token: "", email: ""}
+
   constructor(private angularFireAuth : AngularFireAuth,
               private router : Router,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private share: ShareService,
+              private spinner: NgxSpinnerService,) { }
 
    login(email : string, password : string) {
+    this.spinner.show();
     this.angularFireAuth.signInWithEmailAndPassword(email,password)
       .then( res => {
-        console.log("Aqui: ", res)
-        localStorage.setItem('token','true');
-        let nome = JSON.stringify(res.user?.displayName);
-        console.log(nome)
-        let nome1 = nome.substring(1, nome.length-1);
-        console.log(nome1)
-        localStorage.setItem('nome', nome1);
-
-
-         let foto = JSON.stringify(res.user?.photoURL);
-         let foto1 = foto.substring(1, foto.length-1);
-        // let fotoSemAspas = retornoFoto?.substring(1, retornoFoto.length-1);
-        console.log(foto1);
-         localStorage.setItem('img', foto1);
-        // localStorage.setItem('nome', JSON.stringify(nomeSemAspas));
+          this.dadosUsuario.nome = res.user?.displayName!;
+          this.dadosUsuario.img = res.user?.photoURL!;
+          this.dadosUsuario.logado = true;
+          this.dadosUsuario.token = res.user?.uid!;
+          this.dadosUsuario.email = res.user?.email!;
+          localStorage.setItem('token', res.user?.uid!);
+          this.share.enviarDadosUsuario(this.dadosUsuario);
 
         if(res.user?.emailVerified == true) {
+          this.spinner.hide();
           this.router.navigate(['/dashboard']);
           this.toastr.success("Bem vindo");
         }
         else {
+          this.spinner.hide();
           this.toastr.info("Verifique seu email");
         }
-
       },
       err => {
+        this.spinner.hide();
         this.toastr.error("Login ou senha incorreto");
         this.router.navigate(['/']);
     })
   }
 
   register(email: string, password: string) {
+    this.spinner.show();
     this.angularFireAuth.createUserWithEmailAndPassword(email, password)
     .then( res => {
       this.router.navigate(['/login']);
       this.sendEmailForVerification(res.user);
+      this.toastr.info("Verifique seu email");
+      this.spinner.hide();
     }, err => {
+      this.spinner.hide();
       this.toastr.error("Erro ao registrar", err.message);
       this.router.navigate(['/register']);
     })
   }
 
   logout() {
+    this.spinner.show();
     this.angularFireAuth.signOut()
     .then( () => {
       localStorage.removeItem('token');
-      this.router.navigate(['/login']);
       this.toastr.success("Usuário deslogado");
+      this.spinner.hide();
     }, err => {
       this.toastr.error("Erro ao deslogar", err.message);
+      this.spinner.hide();
     })
   }
 
   forgotPassword(email: string) {
+    this.spinner.show();
     this.angularFireAuth.sendPasswordResetEmail(email)
     .then( res => {
+      this.toastr.info("Verifique seu email");
       this.router.navigate(['/verify-email']);
+      this.spinner.hide();
     }, err => {
+      this.spinner.hide();
       this.toastr.error("Erro ao recuperar email", err.message);
     })
   }
 
   sendEmailForVerification(user : any) {
-    console.log(user);
     user.sendEmailVerification()
     .then((res : any) => {
       this.router.navigate(['/verify-email']);
@@ -89,14 +100,22 @@ export class AuthService {
   }
 
   googleSignIn() {
+    this.spinner.show();
     return this.angularFireAuth.signInWithPopup(new GoogleAuthProvider)
     .then( res => {
-      this.router.navigate(['/dashboard']);
-      localStorage.setItem('token', JSON.stringify(res.user?.uid));
-      this.toastr.success("Bem vindo");
+      this.dadosUsuario.nome = res.user?.displayName!;
+          this.dadosUsuario.img = res.user?.photoURL!;
+          this.dadosUsuario.logado = true;
+          this.dadosUsuario.token = res.user?.uid!;
+          localStorage.setItem('token', res.user?.uid!);
+          this.share.enviarDadosUsuario(this.dadosUsuario);
+          this.router.navigate(['/dashboard']);
+          this.spinner.hide();
+          this.toastr.success("Bem vindo");
     },
       err => {
         this.toastr.error("Erro ao tentar logar com Google", err.message);
+        this.spinner.hide();
       }
     )
   }

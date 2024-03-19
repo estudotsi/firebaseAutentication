@@ -5,6 +5,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit{
   }
 
   logar() {
-    this.authService.login(this.formLogin.value.email, this.formLogin.value.password)
+    this.authService.login(this.formLogin.value.email, this.formLogin.value.password);
   }
 
   signInGoogle() {

@@ -22,8 +22,7 @@ export class DashboardComponent implements OnInit{
               private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.nome = localStorage.getItem('nome');
-    this.imagem = localStorage.getItem('img');
+
   }
 
   sair() {

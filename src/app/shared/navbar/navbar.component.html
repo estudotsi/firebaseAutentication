@@ -1,5 +1,5 @@
-<div class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark">
-  <div class="container">
+<div class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
     <img class="navbar-brand logo" src="../../../assets/logo.svg" width="70px"><span class="logo-title">Vida Nova Music</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -7,11 +7,11 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav">
         <li class="nav-item dropdown" data-bs-theme="light">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="themes">Cadastrar</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="themes">Musicas</a>
           <div class="dropdown-menu" aria-labelledby="themes">
-            <a class="dropdown-item" href="../default/">Default</a>
+            <a class="dropdown-item" routerLink="/listar-musicas">Listar</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../cerulean/">Cerulean</a>
+            <a class="dropdown-item" routerLink="/cadastrar-musicas">Cadastrar</a>
           </div>
         </li>
         <li class="nav-item">

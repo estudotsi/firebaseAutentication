@@ -1,0 +1,61 @@
+<app-titulo [titulo]="'Músicas'" [subtitulo]="'Lista de Músicas'" [iconClass]="'bi bi-list-task'"></app-titulo>
+
+<div class="card rounded shadow-sm p-3 mb-4 mt-4">
+  <div class="table-responsive">
+    <table class="table table-hover">
+
+      <thead>
+          <tr>
+              <!-- <th class="d-none d-md-table-cell">Id</th>
+              <th class="d-none d-md-table-cell">SO</th> -->
+              <th>Nome</th>
+              <th>Cantor</th>
+              <th>Estilo</th>
+              <th>Data Cadastro</th>
+              <th>Execuções</th>
+              <th ><span style="margin-left: 30px;">Opções</span></th>
+          </tr>
+      </thead>
+
+      <tbody>
+
+          <ng-container>
+
+              <tr *ngFor="let musica of musicas">
+                  <!-- <td class="d-none d-md-table-cell"><img src="https://localhost:7284/resources/images/{{item.imagemURL}}" width="120px" height="60px" alt=""></td> -->
+                  <td>{{musica.nomeMusica}}</td>
+                  <td>{{musica.cantor}}</td>
+                  <td>{{musica.estilo}}</td>
+                  <td>{{musica.dataCadastro}}</td>
+                  <td>{{musica.execucoes }}</td>
+                  <td class="d-flex">
+                      <!-- <button type="button" (click)="openModal(template, item.id)" class="btn btn-danger mb-3"> -->
+                    <button type="button"  class="btn btn-danger mb-3">
+                      <i style="font-size: 23px;" class="bi bi-trash"></i>
+                    </button>
+                      <!-- <button type="button" (click)="enviarDadosAlterarPedido(item.id)" class="btn btn-warning ms-2 mb-3"> -->
+                    <button type="button" class="btn btn-warning ms-2 mb-3">
+                      <i style="font-size: 23px;" class="bi bi-pen"></i>
+                    </button>
+                    <button type="button" class="btn btn-info ms-2 mb-3">
+                      <i style="font-size: 23px;" class="bi bi-printer"></i>
+                    </button>
+                  </td>
+              </tr>
+
+          </ng-container>
+
+      </tbody>
+
+      <tfoot *ngIf="!musicas?.length">
+          <tr>
+              <td colspan="8" class="text-center">
+                  <h4>Nenhuma musica encontrada !</h4>
+              </td>
+          </tr>
+      </tfoot>
+
+    </table>
+  </div>
+</div>
+

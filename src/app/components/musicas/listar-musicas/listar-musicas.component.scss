@@ -1,0 +1,31 @@
+.custom-icon-plus {
+  font-size: 1.8rem;
+  color: green;
+}
+
+.custom-icon-dash {
+  font-size: 1.8rem;
+  color: red;
+}
+
+.custom-icon-circle-fill {
+  margin-right: 5px;
+}
+
+.custom-search {
+  margin-left: 10px;
+}
+
+.custom-modal {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (max-width: 563px) {
+  .input-group-prepend {
+    display: none;
+  }
+}
+
+
+

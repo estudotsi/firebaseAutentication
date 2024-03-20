@@ -1,0 +1,14 @@
+<div class="d-flex p-3 align-items-center justify-content-between my-3 text-white bg-primary rounded shadow-sm">
+  <div class="d-flex align-items-center mr-auto">
+      <i class="{{ iconClass }} custom-icon-size"></i>
+      <div class="lh-100">
+          <h2 class="mb-0">{{ titulo }}</h2>
+          <small>{{ subtitulo }}</small>
+      </div>
+  </div>
+  <div *ngIf="button" class="m-4">
+      <button routerLink="/" class="btn btn-outline-light">
+        Listar {{ titulo }}
+      </button>
+  </div>
+</div>

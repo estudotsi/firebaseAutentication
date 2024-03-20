@@ -17,6 +17,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { ListarMusicasComponent } from './components/musicas/listar-musicas/listar-musicas.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
+import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musicas/cadastrar-musicas.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    NavbarComponent
-
+    NavbarComponent,
+    ListarMusicasComponent,
+    TituloComponent,
+    CadastrarMusicasComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       storageBucket: "vida-nova-songs.appspot.com",
       messagingSenderId: "648676129636",
       appId: "1:648676129636:web:713e01433663bb604bd871"
-    })
+    }),
+    provideFirebaseApp(() => initializeApp({"projectId":"vida-nova-songs","appId":"1:648676129636:web:713e01433663bb604bd871","storageBucket":"vida-nova-songs.appspot.com","apiKey":"AIzaSyDfJnan8X9tdevOUWKmgtiyKB1DCUoAZWw","authDomain":"vida-nova-songs.firebaseapp.com","messagingSenderId":"648676129636"})),
+    provideFirestore(() => getFirestore())
   ],
   providers: [
     provideClientHydration()

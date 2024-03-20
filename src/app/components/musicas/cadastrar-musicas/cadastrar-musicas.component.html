@@ -1,0 +1,61 @@
+<app-titulo [titulo]="'Músicas'" [subtitulo]="'Cadastro da Música'"  [iconClass]="'bi bi-list-task'" [button]="true"></app-titulo>
+
+<div class="container-fluid rounded shadow-lg cadastro-pedido">
+
+  <form [formGroup]="formMusica" (ngSubmit)="cadastrarMusica()">
+    <fieldset>
+      <legend>Cadastrar Música</legend>
+      <div>
+        <label for="nomeMusica" class="form-label mt-4">Música</label>
+        <input type="text"
+         class="form-control" id="nomeMusica" aria-describedby="" [ngClass]="{ 'is-valid': formMusica.get('nomeMusica')?.valid ,'is-invalid': formMusica.get('nomeMusica')?.errors && formMusica.get('nomeMusica')?.touched  }" formControlName="nomeMusica">
+      </div>
+      <div *ngIf="formMusica.get('nomeMusica')?.hasError('required') && formMusica.get('nomeMusica')?.touched" class="text-danger">
+        Valor obrigatório
+      </div>
+      <div *ngIf="formMusica.get('nomeMusica')?.hasError('minlength')" class="text-danger">
+        Mínimo 2 caracteres
+      </div>
+      <div *ngIf="formMusica.get('nomeMusica')?.hasError('maxlength')" class="text-danger">
+        Máximo 10 caracteres
+      </div>
+      <div *ngIf="formMusica.get('nomeMusica')?.valid" class="text-success">
+        OK
+      </div>
+      <div>
+        <label for="cantor" class="form-label mt-4">Cantor</label>
+        <input type="text"
+         class="form-control" id="cantor" aria-describedby="" [ngClass]="{ 'is-valid': formMusica.get('cantor')?.valid ,'is-invalid': formMusica.get('cantor')?.errors && formMusica.get('cantor')?.touched  }" formControlName="cantor">
+      </div>
+      <div *ngIf="formMusica.get('cantor')?.hasError('required') && formMusica.get('cantor')?.touched" class="text-danger">
+        Valor obrigatório
+      </div>
+      <div *ngIf="formMusica.get('cantor')?.hasError('minlength')" class="text-danger">
+        Mínimo 2 caracteres
+      </div>
+      <div *ngIf="formMusica.get('cantor')?.hasError('maxlength')" class="text-danger">
+        Máximo 10 caracteres
+      </div>
+      <div *ngIf="formMusica.get('cantor')?.valid" class="text-success">
+        OK
+      </div>
+      <div>
+        <label for="estilo" class="form-label mt-4">Estilo</label>
+        <select class="form-select" id="estilo" formControlName="estilo">
+          <option value="Introspectiva">Introspectiva</option>
+          <option value="Animada">Animada</option>
+        </select>
+      </div>
+      <div>
+        <label for="dataCadastro" class="form-label mt-4">Data Pedido</label>
+        <input type="date" class="form-control" id="dataCadastro" aria-describedby="" formControlName="dataCadastro">
+      </div>
+      <div class="button-cadastrar-pedido">
+        <button type="submit" class="btn btn-primary">Cadastrar Pedido</button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+

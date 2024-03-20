@@ -31,22 +31,15 @@
       </ul>
       <ul class="navbar-nav ms-md-auto">
         <li class="nav-item">
-          <a target="_blank" rel="noopener" class="nav-link" href="https://www.instagram.com/"><i class="bi bi-instagram"></i><span class="d-lg-none ms-2">Instagram</span></a>
-        </li>
-        <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
-          <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
-          <hr class="d-lg-none my-2 text-white-50">
-        </li>
-        <li class="nav-item">
           <a target="_blank" rel="noopener" class="nav-link" tabindex="1">{{ nome }}</a>
         </li>
-        <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
-          <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
-          <hr class="d-lg-none my-2 text-white-50">
+        <li *ngIf="nome === null" class="nav-item">
+          <a  rel="noopener" class="nav-link" tabindex="1"><span style="font-size: 15px; margin-top: 150px;">{{ email }}</span></a>
         </li>
         <li class="nav-item dropdown" data-bs-theme="light">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme">
             <img src="{{ imagem }}" width="30px" style="border-radius: 50%;" alt="">
+            <i *ngIf="imagem === null"  class="bi bi-person-circle"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>

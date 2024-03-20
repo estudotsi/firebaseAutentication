@@ -1,9 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output, afterNextRender } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-navbar',
@@ -18,12 +16,7 @@ export class NavbarComponent {
   @Output() usuarioLogado = new EventEmitter<boolean>();
 
   constructor(private authService: AuthService,
-              private spinner: NgxSpinnerService,
-              private formBuilder: FormBuilder,
-              private router: Router,
-              private toastr: ToastrService) {
-              }
-
+              private router: Router) {}
 
   deslogar() {
     this.authService.logout();

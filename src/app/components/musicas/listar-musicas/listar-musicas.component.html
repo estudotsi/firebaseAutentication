@@ -1,4 +1,4 @@
-<app-titulo [titulo]="'Músicas'" [subtitulo]="'Lista de Músicas'" [iconClass]="'bi bi-list-task'"></app-titulo>
+<app-titulo [titulo]="'Músicas'" [subtitulo]="'Lista de Músicas'" [iconClass]="'bi bi-list-task'" [button]="false"></app-titulo>
 
 <div class="card rounded shadow-sm p-3 mb-4 mt-4">
   <div class="table-responsive">
@@ -26,15 +26,14 @@
                   <td>{{musica.nomeMusica}}</td>
                   <td>{{musica.cantor}}</td>
                   <td>{{musica.estilo}}</td>
-                  <td>{{musica.dataCadastro}}</td>
+                  <td>{{musica.dataCadastro | date:'dd/MM/yyyy'}}</td>
                   <td>{{musica.execucoes }}</td>
                   <td class="d-flex">
                       <!-- <button type="button" (click)="openModal(template, item.id)" class="btn btn-danger mb-3"> -->
-                    <button type="button"  class="btn btn-danger mb-3">
+                    <button type="button" (click)="openModal(template, musica.firebaseId)"  class="btn btn-danger mb-3">
                       <i style="font-size: 23px;" class="bi bi-trash"></i>
                     </button>
-                      <!-- <button type="button" (click)="enviarDadosAlterarPedido(item.id)" class="btn btn-warning ms-2 mb-3"> -->
-                    <button type="button" class="btn btn-warning ms-2 mb-3">
+                    <button type="button" (click)="enviarDadosAlterarMusica(musica.firebaseId)" class="btn btn-warning ms-2 mb-3">
                       <i style="font-size: 23px;" class="bi bi-pen"></i>
                     </button>
                     <button type="button" class="btn btn-info ms-2 mb-3">
@@ -57,5 +56,16 @@
 
     </table>
   </div>
+
+  <ng-template #template>
+    <div class="modal-body text-center">
+        <p>Confirma ?</p>
+        <div class="custom-modal">
+          <button type="button" class="btn btn-warning" (click)="confirme()">Sim</button>
+          <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
+        </div>
+    </div>
+</ng-template>
+
 </div>
 

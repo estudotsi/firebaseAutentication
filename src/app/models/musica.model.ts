@@ -1,5 +1,5 @@
 export interface Musica {
-  id: string;
+  firebaseId: string;
   nomeMusica: string;
   cantor: string;
   dataCadastro: Date;

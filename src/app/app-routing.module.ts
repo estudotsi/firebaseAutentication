@@ -7,6 +7,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ListarMusicasComponent } from './components/musicas/listar-musicas/listar-musicas.component';
 import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musicas/cadastrar-musicas.component';
+import { AlterarMusicasComponent } from './components/musicas/alterar-musicas/alterar-musicas.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'listar-musicas', component: ListarMusicasComponent },
-  { path: 'cadastrar-musicas', component: CadastrarMusicasComponent }
+  { path: 'cadastrar-musicas', component: CadastrarMusicasComponent },
+  { path: 'alterar-musicas/:id', component: AlterarMusicasComponent },
 ];
 
 @NgModule({

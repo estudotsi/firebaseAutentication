@@ -30,7 +30,7 @@ export class CadastrarMusicasComponent implements OnInit{
         cantor: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         dataCadastro: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
         estilo: ['', Validators.required],
-        execucoes: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)] ],
+        execucoes: [0, [Validators.required, Validators.minLength(2), Validators.maxLength(10)] ],
       });
     }
 
@@ -38,7 +38,7 @@ export class CadastrarMusicasComponent implements OnInit{
       this.musica = this.formMusica!.getRawValue();
       this.spinner.show();
        this.musicaService.addMusica(this.musica!)
-       .then( (data: any) => {
+       .then((data: any) => {
            this.toastr.success("Salvo com sucesso", data);
            this.router.navigate([ '/listar-musicas' ]);
            this.spinner.hide();

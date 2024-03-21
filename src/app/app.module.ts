@@ -22,6 +22,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { ListarMusicasComponent } from './components/musicas/listar-musicas/listar-musicas.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musicas/cadastrar-musicas.component';
+import { AlterarMusicasComponent } from './components/musicas/alterar-musicas/alterar-musicas.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musica
     ListarMusicasComponent,
     TituloComponent,
     CadastrarMusicasComponent,
+    AlterarMusicasComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musica
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    ModalModule.forRoot(),
     ToastrModule.forRoot({}),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyDfJnan8X9tdevOUWKmgtiyKB1DCUoAZWw",

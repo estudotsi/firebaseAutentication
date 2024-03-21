@@ -15,6 +15,10 @@ export class MusicaService {
         .valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
     }
 
+    geeAllMusicasById(id: string) {
+      return this.angularFirestore.collection('musicas').doc(id).valueChanges() as Observable<Musica>;
+    }
+
     addMusica(musica: Musica) {
       return this.angularFirestore.collection('musicas').add(musica);
     }

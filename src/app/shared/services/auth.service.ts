@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AuthService {
 
   private dadosUsuario: DadosUsuario = { nome: "", img: "", logado: false, token: "", email: ""}
+  loggedIn = false;
 
   constructor(private angularFireAuth : AngularFireAuth,
               private router : Router,
@@ -31,6 +32,7 @@ export class AuthService {
           this.dadosUsuario.email = res.user?.email!;
           localStorage.setItem('token', res.user?.uid!);
           this.share.enviarDadosUsuario(this.dadosUsuario);
+          this.loggedIn = true;
 
         if(res.user?.emailVerified == true) {
           this.spinner.hide();
@@ -112,6 +114,7 @@ export class AuthService {
           this.router.navigate(['/dashboard']);
           this.spinner.hide();
           this.toastr.success("Bem vindo");
+          this.loggedIn = true;
     },
       err => {
         this.toastr.error("Erro ao tentar logar com Google", err.message);
@@ -119,6 +122,10 @@ export class AuthService {
       }
     )
   }
+
+  public isLoggedIn() {
+    return this.loggedIn;
+ }
 
 
 }

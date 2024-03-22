@@ -8,17 +8,19 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { ListarMusicasComponent } from './components/musicas/listar-musicas/listar-musicas.component';
 import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musicas/cadastrar-musicas.component';
 import { AlterarMusicasComponent } from './components/musicas/alterar-musicas/alterar-musicas.component';
+import { authGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  //{ path: 'dashboard', component: DashboardComponent, canActivate:[authGuard] },
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
-  { path: 'listar-musicas', component: ListarMusicasComponent },
-  { path: 'cadastrar-musicas', component: CadastrarMusicasComponent },
-  { path: 'alterar-musicas/:id', component: AlterarMusicasComponent },
+  { path: 'listar-musicas', component: ListarMusicasComponent, canActivate:[authGuard] },
+  { path: 'cadastrar-musicas', component: CadastrarMusicasComponent, canActivate:[authGuard] },
+  { path: 'alterar-musicas/:id', component: AlterarMusicasComponent, canActivate:[authGuard] },
 ];
 
 @NgModule({

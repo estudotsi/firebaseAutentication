@@ -24,6 +24,7 @@ import { TituloComponent } from './shared/titulo/titulo.component';
 import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musicas/cadastrar-musicas.component';
 import { AlterarMusicasComponent } from './components/musicas/alterar-musicas/alterar-musicas.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AngularFireAuthModule,
     FormsModule,
     BrowserAnimationsModule,
+    AngularFireAuthModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({}),
@@ -61,7 +63,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     provideFirestore(() => getFirestore())
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
   ],
   bootstrap: [AppComponent]
 })

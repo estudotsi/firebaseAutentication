@@ -35,4 +35,8 @@ export class MusicaService {
       return this.angularFirestore.collection('musicas').doc(nomeMusica).valueChanges() as Observable<Musica>;
     }
 
+    filterPoNomeMusica(nomeMusica: string) {
+      return this.angularFirestore.collection('musicas', ref => ref.where('nomeMusica','==', nomeMusica )).valueChanges()
+  };
+
 }

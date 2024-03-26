@@ -2,7 +2,14 @@
 
 <div class="container">
   <div class="mt-5">
-        <div class="d-style bgc-white btn btn-brc-tp btn-outline-green btn-h-outline-green btn-a-outline-green w-100 my-2 py-3 shadow-sm border-2" *ngFor="let repertorio of repertorios">
+        <div class="d-style bgc-white btn btn-brc-tp btn-outline-green btn-h-outline-green btn-a-outline-green w-100 my-2 py-3 shadow-sm border-2" *ngFor="let repertorio of repertorios
+        | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index" [ngClass]="{'activer-class': i == 0}">
 
           <div class="row align-items-center">
             <div class="col-12 col-md-4">
@@ -11,7 +18,7 @@
               </h4>
 
               <div class="text-secondary-d1 text-120">
-                <span class="ml-n15 align-text-bottom"></span><span class="text-180">{{repertorio.data| date:'dd/MM/yyyy'}}</span>
+                <span class="ml-n15 align-text-bottom"></span><span class="text-180">{{repertorio.data| date:'fullDate' : 'pt-BR'}}</span>
               </div>
             </div>
 
@@ -52,12 +59,24 @@
 
             <div class="col-12 col-md-2 text-center custom-buttons">
               <a href="#" class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600">Alterar</a>
-              <a href="#" class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-75 text-600" style="margin-top: 5px;">Excluir</a>
+              <a class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-75 text-600" (click)="openModal(template, repertorio.firebaseId)" style="margin-top: 5px;">Excluir</a>
               <a class="f-n-hover btn btn-success btn-raised px-4 py-25 w-75 text-600" (click)="generatePDF(repertorio)" style="margin-top: 5px;">PDF</a>
             </div>
           </div>
 
         </div>
+      </div>
+      <ng-template #template>
+        <div class="modal-body text-center">
+            <p>Confirma ?</p>
+            <div class="custom-modal">
+              <button type="button" class="btn btn-warning" (click)="confirme()">Sim</button>
+              <button type="button" class="btn btn-primary" (click)="decline()">Não</button>
+            </div>
+        </div>
+    </ng-template>
+      <div class="d-flex justify-content-center bgc-white mb-3 p-2">
+        <pagination-controls previousLabel="Anterior" nextLabel="Próxima"(pageChange)="onTableDataChange($event)"></pagination-controls>
       </div>
   </div>
 

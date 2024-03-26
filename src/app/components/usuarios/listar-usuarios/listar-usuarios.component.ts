@@ -28,6 +28,11 @@ ngOnInit(): void {
   this.buscarUsuarios();
   }
 
+  public get filtroLista(): string {
+    return "";
+  }
+
+
   public buscarUsuarios(): void{
     this.usuarioService.geeAllUsuarios().subscribe({
       next: (usuarioRecebido: Usuario[]) => {

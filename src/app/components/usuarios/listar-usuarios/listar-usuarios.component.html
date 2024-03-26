@@ -1,6 +1,23 @@
 <app-titulo [titulo]="'Usuários'" [subtitulo]="'Lista de Usuários'" [iconClass]="'bi bi-list-task'" [button]="false"></app-titulo>
 
 <div class="card rounded shadow-sm p-3 mb-4 mt-4">
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">Filtro: </div>
+            </div>
+            <!-- <input type="text" class="form-control" placeholder="Filtrar por nome" [(ngModel)]="filtroLista"> -->
+            <input type="text" class="form-control" placeholder="Filtrar pelo nome da música" [(ngModel)]="filtroLista">
+        </div>
+    </div>
+    <div class="custom-search">
+        <a class="d-flex btn btn-outline-primary">
+            <b class="ml-1 d-none d-sm-block" routerLink="/cadastrar-musicas"><i class="bi bi-plus-circle-fill custom-icon-circle-fill"></i>Novo</b>
+            <i class="bi bi-plus-circle-fill custom-icon-circle-fill-mobile" routerLink="/cadastrar-usuarios"></i>
+        </a>
+    </div>
+  </div>
   <div class="table-responsive">
     <table class="table table-hover">
 

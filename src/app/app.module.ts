@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AngularFireModule } from '@angular/fire/compat';
@@ -32,6 +32,11 @@ import { ListarRepertorioComponent } from './components/repertorio/listar-repert
 import { CadastrarRepertorioComponent } from './components/repertorio/cadastrar-repertorio/cadastrar-repertorio.component';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { NgSelectModule } from '@ng-select/ng-select';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -64,6 +69,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     NgSelectModule,
     NgxSelectModule,
+    NgxPaginationModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({}),
     AngularFireModule.initializeApp({
@@ -79,6 +85,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
   providers: [
     provideClientHydration(),
+    {provide: LOCALE_ID, useValue: 'pt' },
+    {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'}
   ],
   bootstrap: [AppComponent]
 })

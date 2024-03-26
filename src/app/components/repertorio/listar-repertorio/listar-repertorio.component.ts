@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Repertorio } from '../../../models/repertorio.model';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RepertorioService } from '../../../shared/services/repertorio.service';
@@ -14,9 +14,13 @@ import { jsPDF } from 'jspdf';
 })
 export class ListarRepertorioComponent implements OnInit{
 
-  repertorios?: Repertorio[];
+  repertorios?: any;
   modalRef?: BsModalRef;
   idDelete?: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 3;
+  tableSizes: any = [3, 6, 9, 12];
 
   constructor(private repertorioService: RepertorioService,
               private modalService: BsModalService,
@@ -73,6 +77,39 @@ export class ListarRepertorioComponent implements OnInit{
   documento.text("Música 5: " + repertorio.musica5, 42, 110);
 
   documento.output("dataurlnewwindow");
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.buscarRepertorios();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.buscarRepertorios();
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
+  }
+
+  openModal(template: TemplateRef<any>, id: any) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.idDelete = id;
+  }
+
+  confirme() {
+    this.modalRef?.hide();
+      this.spinner.show();
+      this.repertorioService.deleteRepertorio(this.idDelete)
+      .then((data: any) => {
+        this.toastr.success("Deletado com sucesso", data);
+        this.spinner.hide();
+      },
+      error => {
+        this.toastr.error("Erro ao deletar", error.err);
+        this.spinner.hide();
+      })
   }
 
 }

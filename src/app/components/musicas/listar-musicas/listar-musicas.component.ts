@@ -13,9 +13,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListarMusicasComponent implements OnInit{
 
-  musicas?: Musica[];
+  musicas: Musica[] =[];
   modalRef?: BsModalRef;
   idDelete?: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [3, 6, 9, 12];
+  public musicasFiltradas: Musica[] = [];
+  private filtroListado = '';
+
+
 
   constructor(private musicaService: MusicaService,
               private modalService: BsModalService,
@@ -28,10 +36,30 @@ export class ListarMusicasComponent implements OnInit{
     this.buscasMusicas();
   }
 
+  public get filtroLista(): string {
+    return this.filtroListado;
+  }
+
+  public set filtroLista(value: string) {
+    this.filtroListado = value;
+    this.musicasFiltradas = this.filtroLista
+      ? this.filtrarEventos(this.filtroLista)
+      : this.musicas;
+  }
+
+  public filtrarEventos(filtrarPor: string): Musica[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.musicas.filter(
+      (musica) =>
+        musica.nomeMusica.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
+  }
+
   public buscasMusicas(): void{
     this.musicaService.geeAllMusicas().subscribe({
       next: (musicaRecebida: Musica[]) => {
         this.musicas = musicaRecebida;
+        this.musicasFiltradas = this.musicas;
         this.spinner.hide();
       },
       error: (error: any) => {
@@ -68,6 +96,16 @@ export class ListarMusicasComponent implements OnInit{
   openModal(template: TemplateRef<any>, id: any) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
     this.idDelete = id;
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.buscasMusicas();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.buscasMusicas();
   }
 
 }

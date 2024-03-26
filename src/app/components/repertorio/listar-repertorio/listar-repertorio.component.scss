@@ -98,8 +98,17 @@
 text-decoration:line-through;;
 }
 
+.activer-class {
+  background-color: beige !important;
+}
+
 ul {
   margin-left: 140px;
+}
+
+.custom-modal {
+  display: flex;
+  justify-content: space-around;
 }
 
 @media (max-width: 563px) {

@@ -11,7 +11,7 @@ export class RepertorioService {
   constructor(private angularFirestore: AngularFirestore) { }
 
   geeAllRepertorios() {
-    return this.angularFirestore.collection('repertório', repertorio => repertorio.orderBy('data'))
+    return this.angularFirestore.collection('repertório', repertorio => repertorio.orderBy('data', 'desc'))
       .valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
   }
 

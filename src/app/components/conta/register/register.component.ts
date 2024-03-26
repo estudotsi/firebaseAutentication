@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Login } from '../../models/login.model';
-import { AuthService } from '../../shared/services/auth.service';
+import { Login } from '../../../models/login.model';
+import { AuthService } from '../../../shared/services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

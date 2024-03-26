@@ -31,4 +31,8 @@ export class MusicaService {
       return this.angularFirestore.collection('musicas').doc(musicaId).delete();
     }
 
+    getAllMusicasByNome(nomeMusica: string) {
+      return this.angularFirestore.collection('musicas').doc(nomeMusica).valueChanges() as Observable<Musica>;
+    }
+
 }

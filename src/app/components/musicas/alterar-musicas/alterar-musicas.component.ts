@@ -43,6 +43,7 @@ export class AlterarMusicasComponent implements OnInit{
       this.id = this.activatedRouter.snapshot.paramMap.get('id');
       this.musicaService.geeAllMusicasById(this.id).subscribe({
           next: (musicaRecebida: Musica) => {
+            console.log("Mesmo: ", musicaRecebida);
               this.formMusicaAlterar.patchValue(musicaRecebida);
               this.dataCadastro = musicaRecebida.dataCadastro;
               this.spinner.hide();

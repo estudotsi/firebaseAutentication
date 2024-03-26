@@ -1,0 +1,51 @@
+<app-titulo [titulo]="'Usuários'" [subtitulo]="'Cadastro da Usuário'"  [iconClass]="'bi bi-list-task'" [button]="true"></app-titulo>
+
+<div class="container-fluid rounded shadow-lg bg-dark cadastro-pedido" data-bs-theme="dark">
+  <div class="container-fluid">
+
+  <form [formGroup]="formUsuario" (ngSubmit)="cadastrarUsuario()">
+    <fieldset>
+      <legend>Cadastrar Usuário</legend>
+      <div>
+        <label for="nome" class="form-label mt-4">Nome</label>
+        <input type="text"
+         class="form-control" id="nome" aria-describedby="" [ngClass]="{ 'is-valid': formUsuario.get('nome')?.valid ,'is-invalid': formUsuario.get('nome')?.errors && formUsuario.get('nome')?.touched  }" formControlName="nome">
+      </div>
+      <div *ngIf="formUsuario.get('nome')?.hasError('required') && formUsuario.get('nome')?.touched" class="text-danger">
+        Valor obrigatório
+      </div>
+      <div *ngIf="formUsuario.get('nome')?.hasError('minlength')" class="text-danger">
+        Mínimo 2 caracteres
+      </div>
+      <div *ngIf="formUsuario.get('nome')?.hasError('maxlength')" class="text-danger">
+        Máximo 10 caracteres
+      </div>
+      <div *ngIf="formUsuario.get('nome')?.valid" class="text-success">
+        OK
+      </div>
+      <div>
+        <label for="codinome" class="form-label mt-4">Codinome</label>
+        <input type="text"
+         class="form-control" id="codinome" aria-describedby="" [ngClass]="{ 'is-valid': formUsuario.get('codinome')?.valid ,'is-invalid': formUsuario.get('codinome')?.errors && formUsuario.get('codinome')?.touched  }" formControlName="codinome">
+      </div>
+      <div *ngIf="formUsuario.get('codinome')?.hasError('required') && formUsuario.get('codinome')?.touched" class="text-danger">
+        Valor obrigatório
+      </div>
+      <div *ngIf="formUsuario.get('codinome')?.hasError('minlength')" class="text-danger">
+        Mínimo 2 caracteres
+      </div>
+      <div *ngIf="formUsuario.get('codinome')?.hasError('maxlength')" class="text-danger">
+        Máximo 10 caracteres
+      </div>
+      <div *ngIf="formUsuario.get('codinome')?.valid" class="text-success">
+        OK
+      </div>
+      <div class="button-cadastrar-pedido">
+        <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+

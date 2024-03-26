@@ -14,19 +14,24 @@
             <a class="dropdown-item" routerLink="/cadastrar-musicas">Cadastrar</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../help/">Ajuda</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://blog.bootswatch.com/">Relatórios</a>
+        <li class="nav-item dropdown" data-bs-theme="light">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="themes">Repertório</a>
+          <div class="dropdown-menu" aria-labelledby="themes">
+            <a class="dropdown-item" routerLink="/listar-repertorio">Listar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/cadastrar-repertorio">Cadastrar</a>
+          </div>
         </li>
         <li class="nav-item dropdown" data-bs-theme="light">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="download">Estatísticas</a>
-          <div class="dropdown-menu" aria-labelledby="download">
-            <a class="dropdown-item" rel="noopener" target="_blank" href="https://jsfiddle.net/bootswatch/4Lewaf8d/">Open in JSFiddle</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="themes">Usuários</a>
+          <div class="dropdown-menu" aria-labelledby="themes">
+            <a class="dropdown-item" routerLink="/listar-usuarios">Listar</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../5/superhero/bootstrap.css" download>bootstrap.css</a>
+            <a class="dropdown-item" routerLink="/cadastrar-usuario">Cadastrar</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-md-auto">

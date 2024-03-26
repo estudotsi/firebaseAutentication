@@ -12,10 +12,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { LoginComponent } from './components/conta/login/login.component';
+import { RegisterComponent } from './components/conta/register/register.component';
+import { ForgotPasswordComponent } from './components/conta/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/conta/verify-email/verify-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -24,21 +24,34 @@ import { TituloComponent } from './shared/titulo/titulo.component';
 import { CadastrarMusicasComponent } from './components/musicas/cadastrar-musicas/cadastrar-musicas.component';
 import { AlterarMusicasComponent } from './components/musicas/alterar-musicas/alterar-musicas.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ListarUsuariosComponent } from './components/usuarios/listar-usuarios/listar-usuarios.component';
+import { CadastrarUsuariosComponent } from './components/usuarios/cadastrar-usuarios/cadastrar-usuarios.component';
+import { AlterarUsuariosComponent } from './components/usuarios/alterar-usuarios/alterar-usuarios.component';
+import { AlterarRepertorioComponent } from './components/repertorio/alterar-repertorio/alterar-repertorio.component';
+import { ListarRepertorioComponent } from './components/repertorio/listar-repertorio/listar-repertorio.component';
+import { CadastrarRepertorioComponent } from './components/repertorio/cadastrar-repertorio/cadastrar-repertorio.component';
+import { NgxSelectModule } from 'ngx-select-ex';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
     VerifyEmailComponent,
     NavbarComponent,
     ListarMusicasComponent,
     TituloComponent,
     CadastrarMusicasComponent,
     AlterarMusicasComponent,
+    ListarUsuariosComponent,
+    CadastrarUsuariosComponent,
+    AlterarUsuariosComponent,
+    AlterarRepertorioComponent,
+    ListarRepertorioComponent,
+    CadastrarRepertorioComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +62,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     BrowserAnimationsModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
+    NgSelectModule,
+    NgxSelectModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({}),
     AngularFireModule.initializeApp({

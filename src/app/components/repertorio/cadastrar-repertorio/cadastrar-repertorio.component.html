@@ -1,0 +1,91 @@
+<app-titulo [titulo]="'Repertório'" [subtitulo]="'Cadastro da Repertório'"  [iconClass]="'bi bi-list-task'" [button]="true"></app-titulo>
+
+<div class="container-fluid rounded shadow-lg bg-dark cadastro-pedido" data-bs-theme="dark">
+  <div class="container-fluid">
+
+  <form [formGroup]="formRepertorio" (ngSubmit)="cadastrarRepertorio()">
+    <fieldset>
+      <legend>Cadastrar Repertório</legend>
+      <div>
+        <label for="data" class="form-label mt-4">Data Evento</label>
+        <input type="date" class="form-control" style="background-color: gray; width: 45px;" id="data" aria-describedby="" formControlName="data">
+      </div>
+      <div>
+        <label for="dirigente" class="form-label mt-4">Dirigente</label>
+        <ng-select
+                   [items]="usuarios"
+                   bindLabel="codinome"
+                   bindValue="codinome"
+                   [multiple]="false"
+                   placeholder="Selecionar dirigente"
+                   clearAllText="Clear"
+                   formControlName="dirigente">
+        </ng-select>
+      </div>
+      <div>
+        <label for="musica1" class="form-label mt-4">Música 1</label>
+        <ng-select
+                   [items]="musicas"
+                   bindLabel="nomeMusica"
+                   bindValue="nomeMusica"
+                   [multiple]="false"
+                   placeholder="Selecionar música"
+                   clearAllText="Clear"
+                   formControlName="musica1">
+        </ng-select>
+      </div>
+      <div>
+        <label for="musica2" class="form-label mt-4">Música 2</label>
+        <ng-select
+                   [items]="musicas"
+                   bindLabel="nomeMusica"
+                   bindValue="nomeMusica"
+                   [multiple]="false"
+                   placeholder="Selecionar música"
+                   clearAllText="Clear"
+                   formControlName="musica2">
+        </ng-select>
+      </div>
+      <div>
+        <label for="musica3" class="form-label mt-4">Música 3</label>
+        <ng-select
+                   [items]="musicas"
+                   bindLabel="nomeMusica"
+                   bindValue="nomeMusica"
+                   [multiple]="false"
+                   placeholder="Selecionar música"
+                   clearAllText="Clear"
+                   formControlName="musica3">
+        </ng-select>
+      </div>
+      <div>
+        <label for="musica4" class="form-label mt-4">Música 4</label>
+        <ng-select
+                   [items]="musicas"
+                   bindLabel="nomeMusica"
+                   bindValue="nomeMusica"
+                   [multiple]="false"
+                   placeholder="Selecionar música"
+                   clearAllText="Clear"
+                   formControlName="musica4">
+        </ng-select>
+      </div>
+      <div>
+        <label for="musica5" class="form-label mt-4">Música 5</label>
+        <ng-select
+                   [items]="musicas"
+                   bindLabel="nomeMusica"
+                   bindValue="nomeMusica"
+                   [multiple]="false"
+                   placeholder="Selecionar música"
+                   clearAllText="Clear"
+                   formControlName="musica5">
+        </ng-select>
+      </div>
+      <div class="button-cadastrar-pedido">
+        <button type="submit" class="btn btn-primary">Cadastrar Repertório</button>
+      </div>
+    </fieldset>
+  </form>
+
+</div>

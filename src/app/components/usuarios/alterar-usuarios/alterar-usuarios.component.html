@@ -1,0 +1,52 @@
+<app-titulo [titulo]="'Usuários'" [subtitulo]="'Alterar Usuário'"  [iconClass]="'bi bi-list-task'" [button]="true"></app-titulo>
+
+<div class="container-fluid rounded shadow-lg bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+
+  <form [formGroup]="formUsuarioAlterar" (ngSubmit)="alterarUsuario()">
+    <fieldset>
+      <legend>Alterar Usuário</legend>
+      <div>
+        <label for="nome" class="form-label mt-4">Nome</label>
+        <input type="text"
+         class="form-control" id="nome" aria-describedby="" [ngClass]="{ 'is-valid': formUsuarioAlterar.get('nome')?.valid ,'is-invalid': formUsuarioAlterar.get('nome')?.errors && formUsuarioAlterar.get('nome')?.touched  }" formControlName="nome">
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('nome')?.hasError('required') && formUsuarioAlterar.get('nome')?.touched" class="text-danger">
+        Valor obrigatório
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('nome')?.hasError('minlength')" class="text-danger">
+        Mínimo 2 caracteres
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('nome')?.hasError('maxlength')" class="text-danger">
+        Máximo 10 caracteres
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('nome')?.valid" class="text-success">
+        OK
+      </div>
+      <div>
+        <label for="codinome" class="form-label mt-4">Codinome</label>
+        <input type="text"
+         class="form-control" id="codinome" aria-describedby="" [ngClass]="{ 'is-valid': formUsuarioAlterar.get('codinome')?.valid ,'is-invalid': formUsuarioAlterar.get('codinome')?.errors && formUsuarioAlterar.get('codinome')?.touched  }" formControlName="codinome">
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('codinome')?.hasError('required') && formUsuarioAlterar.get('codinome')?.touched" class="text-danger">
+        Valor obrigatório
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('codinome')?.hasError('minlength')" class="text-danger">
+        Mínimo 2 caracteres
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('codinome')?.hasError('maxlength')" class="text-danger">
+        Máximo 10 caracteres
+      </div>
+      <div *ngIf="formUsuarioAlterar.get('codinome')?.valid" class="text-success">
+        OK
+      </div>
+      <div class="button-cadastrar-pedido">
+        <button type="submit" class="btn btn-primary">Alterar Usuário</button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+
+

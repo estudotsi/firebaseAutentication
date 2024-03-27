@@ -1,8 +1,24 @@
-<app-titulo [titulo]="'Repertório'" [subtitulo]="'Lista de Repertório'" [iconClass]="'bi bi-list-task'" [button]="false"></app-titulo>
-
+<app-titulo [titulo]="'Repertório'" [subtitulo]="'Lista de Repertórios'" [iconClass]="'bi bi-list-task'" [button]="false"></app-titulo>
+<div class="d-flex">
+  <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+          <div class="input-group-prepend">
+              <div class="input-group-text">Filtro: </div>
+          </div>
+          <!-- <input type="text" class="form-control" placeholder="Filtrar por nome" [(ngModel)]="filtroLista"> -->
+          <input type="text" class="form-control" placeholder="Filtrar pelo nome do dirigente" [(ngModel)]="filtroLista">
+      </div>
+  </div>
+  <div class="custom-search">
+      <a class="d-flex btn btn-outline-primary">
+          <b class="ml-1 d-none d-sm-block" routerLink="/cadastrar-repertorio"><i class="bi bi-plus-circle-fill custom-icon-circle-fill"></i>Novo</b>
+          <i class="bi bi-plus-circle-fill custom-icon-circle-fill-mobile" routerLink="/cadastrar-repertorio"></i>
+      </a>
+  </div>
+</div>
 <div class="container">
-  <div class="mt-5">
-        <div class="d-style bgc-white btn btn-brc-tp btn-outline-green btn-h-outline-green btn-a-outline-green w-100 my-2 py-3 shadow-sm border-2" *ngFor="let repertorio of repertorios
+  <div class="mt-2">
+        <div class="d-style bgc-white btn btn-brc-tp btn-outline-green btn-h-outline-green btn-a-outline-green w-100 my-2 py-3 shadow-sm border-2" *ngFor="let repertorio of repertoriosFiltrados
         | paginate
               : {
                   itemsPerPage: tableSize,
@@ -58,7 +74,7 @@
             </ul>
 
             <div class="col-12 col-md-2 text-center custom-buttons">
-              <a href="#" class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600">Alterar</a>
+              <a class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600" (click)="enviarDadosAlterarRepertorio(repertorio.firebaseId)">Alterar</a>
               <a class="f-n-hover btn btn-danger btn-raised px-4 py-25 w-75 text-600" (click)="openModal(template, repertorio.firebaseId)" style="margin-top: 5px;">Excluir</a>
               <a class="f-n-hover btn btn-success btn-raised px-4 py-25 w-75 text-600" (click)="generatePDF(repertorio)" style="margin-top: 5px;">PDF</a>
             </div>

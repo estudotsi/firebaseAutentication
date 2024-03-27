@@ -28,9 +28,9 @@ export class CadastrarMusicasComponent implements OnInit{
         id: ['',],
         nomeMusica: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         cantor: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-        dataCadastro: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
+        dataCadastro: ['', [Validators.required]],
         estilo: ['', Validators.required],
-        execucoes: [0, [Validators.required, Validators.minLength(2), Validators.maxLength(10)] ],
+        execucoes: [0],
       });
     }
 
@@ -39,13 +39,13 @@ export class CadastrarMusicasComponent implements OnInit{
       this.spinner.show();
        this.musicaService.addMusica(this.musica!)
        .then((data: any) => {
-           this.toastr.success("Salvo com sucesso", data);
+           this.toastr.success("Cadastrado com sucesso");
            this.router.navigate([ '/listar-musicas' ]);
            this.spinner.hide();
          },
          error => {
           this.spinner.hide();
-          this.toastr.error("Erro ao cadastrar", error.error);
+          this.toastr.error("Erro ao cadastrar");
          })
     }
 

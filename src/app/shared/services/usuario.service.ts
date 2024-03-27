@@ -10,12 +10,12 @@ export class UsuarioService {
 
   constructor(private angularFirestore: AngularFirestore) { }
 
-  geeAllUsuarios() {
+  getAllUsuarios() {
     return this.angularFirestore.collection('usuarios', usuario => usuario.orderBy('nome'))
       .valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
   }
 
-  geeAllUsuarioById(id: string) {
+  getUsuarioById(id: string) {
     return this.angularFirestore.collection('usuarios').doc(id).valueChanges() as Observable<Usuario>;
   }
 

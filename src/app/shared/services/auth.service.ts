@@ -36,7 +36,7 @@ export class AuthService {
 
         if(res.user?.emailVerified == true) {
           this.spinner.hide();
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/listar-repertorio']);
           this.toastr.success("Bem vindo");
         }
         else {
@@ -46,7 +46,7 @@ export class AuthService {
       },
       err => {
         this.spinner.hide();
-        this.toastr.error("Login ou senha incorreto");
+        this.toastr.error("Login ou senha incorretos");
         this.router.navigate(['/']);
     })
   }
@@ -111,7 +111,7 @@ export class AuthService {
           this.dadosUsuario.token = res.user?.uid!;
           localStorage.setItem('token', res.user?.uid!);
           this.share.enviarDadosUsuario(this.dadosUsuario);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/listar-repertorio']);
           this.spinner.hide();
           this.toastr.success("Bem vindo");
           this.loggedIn = true;

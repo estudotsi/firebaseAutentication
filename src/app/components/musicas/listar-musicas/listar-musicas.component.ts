@@ -13,14 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListarMusicasComponent implements OnInit{
 
-  musicas: Musica[] =[];
+  musicas: Musica[] = [];
   modalRef?: BsModalRef;
   idDelete?: any;
   page: number = 1;
   count: number = 0;
   tableSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
-  public musicasFiltradas: Musica[] = [];
+  musicasFiltradas: Musica[] = [];
   private filtroListado = '';
 
 
@@ -56,7 +56,7 @@ export class ListarMusicasComponent implements OnInit{
   }
 
   public buscasMusicas(): void{
-    this.musicaService.geeAllMusicas().subscribe({
+    this.musicaService.getAllMusicas().subscribe({
       next: (musicaRecebida: Musica[]) => {
         this.musicas = musicaRecebida;
         this.musicasFiltradas = this.musicas;
@@ -80,11 +80,11 @@ export class ListarMusicasComponent implements OnInit{
       this.spinner.show();
       this.musicaService.deleteMusica(this.idDelete)
       .then((data: any) => {
-        this.toastr.success("Deletado com sucesso", data);
+        this.toastr.success("Deletado com sucesso");
         this.spinner.hide();
       },
       error => {
-        this.toastr.error("Erro ao deletar", error.err);
+        this.toastr.error("Erro ao deletar");
         this.spinner.hide();
       })
   }

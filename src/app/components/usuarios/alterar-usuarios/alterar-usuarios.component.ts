@@ -37,7 +37,7 @@ export class AlterarUsuariosComponent implements OnInit{
 
   public buscarUsuarioPorId(): void{
     this.id = this.activatedRouter.snapshot.paramMap.get('id');
-    this.usuarioService.geeAllUsuarioById(this.id).subscribe({
+    this.usuarioService.getUsuarioById(this.id).subscribe({
         next: (usuarioRecebido: Usuario) => {
             this.formUsuarioAlterar.patchValue(usuarioRecebido);
             this.spinner.hide();
@@ -45,7 +45,6 @@ export class AlterarUsuariosComponent implements OnInit{
         error: (error: any) => {
           this.spinner.hide();
           this.toastr.error("Erro ao alterar", error);
-          console.log("Teste: ", error.err);
           },
         complete: () => {
           this.spinner.hide();
@@ -58,7 +57,7 @@ export class AlterarUsuariosComponent implements OnInit{
     this.spinner.show();
     this.usuarioService.upDateUsuario(this.id, this.usuario!)
     .then((data: any) => {
-      this.toastr.success("Salvo com sucesso", data);
+      this.toastr.success("Alterado com sucesso", data);
       this.router.navigate([ '/listar-usuarios' ]);
       this.spinner.hide();
     },

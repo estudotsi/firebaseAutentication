@@ -16,7 +16,7 @@ export class AlterarMusicasComponent implements OnInit{
   public formMusicaAlterar!: FormGroup;
   public musica?: Musica;
   id?: any;
-  dataCadastro: any;
+  execucoes?: number;
 
   constructor(private musicaService: MusicaService,
               private activatedRouter: ActivatedRoute,
@@ -33,25 +33,23 @@ export class AlterarMusicasComponent implements OnInit{
       firebaseId: ['',],
       nomeMusica: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       cantor: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      dataCadastro: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
+      dataCadastro: ['', [Validators.required]],
       estilo: ['', Validators.required],
-      execucoes: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)] ],
+      execucoes: [this.execucoes],
     });
   }
 
   public buscarPedidoPorId(): void{
       this.id = this.activatedRouter.snapshot.paramMap.get('id');
-      this.musicaService.geeAllMusicasById(this.id).subscribe({
+      this.musicaService.getMusicaById(this.id).subscribe({
           next: (musicaRecebida: Musica) => {
-            console.log("Mesmo: ", musicaRecebida);
-              this.formMusicaAlterar.patchValue(musicaRecebida);
-              this.dataCadastro = musicaRecebida.dataCadastro;
-              this.spinner.hide();
+            this.formMusicaAlterar.patchValue(musicaRecebida);
+            this.execucoes = musicaRecebida.execucoes;
+            this.spinner.hide();
             },
           error: (error: any) => {
             this.spinner.hide();
-            this.toastr.error("Erro ao alterar", error);
-            console.log("Teste: ", error.err);
+            this.toastr.error("Erro ao alterar");
             },
           complete: () => {
             this.spinner.hide();
@@ -64,14 +62,14 @@ export class AlterarMusicasComponent implements OnInit{
     this.spinner.show();
     this.musicaService.upDateMusica(this.id, this.musica!)
     .then((data: any) => {
-      this.toastr.success("Salvo com sucesso", data);
+      this.toastr.success("Alterado com sucesso");
       this.router.navigate([ '/listar-musicas' ]);
       this.spinner.hide();
     },
     error => {
-      this.toastr.error("Erro ao cadastrar", error.err);
-     this.spinner.hide();
-     this.toastr.error("Erro ao cadastrar", error.err);
+      this.toastr.error("Erro ao cadastrar");
+      this.spinner.hide();
+      this.toastr.error("Erro ao cadastrar");
     })
   }
 

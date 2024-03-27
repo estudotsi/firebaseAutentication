@@ -10,12 +10,12 @@ export class MusicaService {
 
   constructor(private angularFirestore: AngularFirestore) { }
 
-    geeAllMusicas() {
+    getAllMusicas() {
       return this.angularFirestore.collection('musicas', musica => musica.orderBy('nomeMusica'))
         .valueChanges({idField: 'firebaseId'}) as Observable<any[]>;
     }
 
-    geeAllMusicasById(id: string) {
+    getMusicaById(id: string) {
       return this.angularFirestore.collection('musicas').doc(id).valueChanges() as Observable<Musica>;
     }
 
@@ -35,7 +35,7 @@ export class MusicaService {
       return this.angularFirestore.collection('musicas').doc(nomeMusica).valueChanges() as Observable<Musica>;
     }
 
-    filterPoNomeMusica(nomeMusica: string) {
+    filterPorNomeMusica(nomeMusica: string) {
       return this.angularFirestore.collection('musicas', ref => ref.where('nomeMusica','==', nomeMusica )).valueChanges()
   };
 

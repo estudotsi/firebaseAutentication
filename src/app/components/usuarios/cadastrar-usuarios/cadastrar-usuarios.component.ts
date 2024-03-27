@@ -36,7 +36,7 @@ export class CadastrarUsuariosComponent implements OnInit{
       this.spinner.show();
        this.usuarioService.addUsuario(this.usuario!)
        .then((data: any) => {
-           this.toastr.success("Salvo com sucesso", data);
+           this.toastr.success("Cadastrado com sucesso");
            this.router.navigate([ '/listar-usuarios' ]);
            this.spinner.hide();
          },

@@ -37,7 +37,6 @@ export class CadastrarRepertorioComponent implements OnInit{
               private toastr: ToastrService) {}
 
   ngOnInit(): void {
-
     this.formRepertorio = this.formBuilder.group({
       id: ['',],
       data: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -55,10 +54,9 @@ export class CadastrarRepertorioComponent implements OnInit{
   }
 
   public buscarMusicas(): void{
-    this.musicaService.geeAllMusicas().subscribe({
+    this.musicaService.getAllMusicas().subscribe({
       next: (musicaRecebida: Musica[]) => {
         this.musicas = musicaRecebida;
-        console.log("Aqui: ", this.musicas);
         this.spinner.hide();
       },
       error: (error: any) => {
@@ -71,7 +69,7 @@ export class CadastrarRepertorioComponent implements OnInit{
   }
 
   public buscarUsuarios(): void{
-    this.usuarioService.geeAllUsuarios().subscribe({
+    this.usuarioService.getAllUsuarios().subscribe({
       next: (usuarioRecebido: Usuario[]) => {
         this.usuarios = usuarioRecebido;
         this.spinner.hide();
@@ -90,7 +88,7 @@ export class CadastrarRepertorioComponent implements OnInit{
       this.spinner.show();
        this.repertorioService.addRepertorio(this.repertorio!)
        .then((data: any) => {
-           this.toastr.success("Salvo com sucesso", data);
+           this.toastr.success("Cadastrado com sucesso");
            this.router.navigate([ '/listar-repertorio' ]);
            this.spinner.hide();
          },

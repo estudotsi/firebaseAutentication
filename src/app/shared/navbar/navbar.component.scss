@@ -1,15 +1,15 @@
 .logo-title {
-  margin-left: 8px;
-  margin-right: 20px;
-  font-size: 27px;
+  margin-left: 8px !important;
+  margin-right: 20px !important;
+  font-size: 27px !important;
 }
 
 @media (max-width: 450px) {
   .logo {
-    width: 40px;
+    width: 40px !important;
   }
 
   .logo-title {
-    font-size: 20px;
+    font-size: 20px !important;
   }
 }

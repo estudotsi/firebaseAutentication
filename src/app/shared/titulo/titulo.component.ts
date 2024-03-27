@@ -11,5 +11,6 @@ export class TituloComponent {
   @Input() iconClass = "bi bi-speedometer";
   @Input() subtitulo!: string;
   @Input() button: boolean = false;
+  @Input() path: string = "";
 
 }

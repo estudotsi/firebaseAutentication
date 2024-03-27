@@ -52,12 +52,12 @@
             <div *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched" class="text-danger">
               Valor obrigatório
             </div>
-            <div *ngIf="formLogin.get('password')?.hasError('minlength')" class="text-danger">
+            <!-- <div *ngIf="formLogin.get('password')?.hasError('minlength')" class="text-danger">
               Mínimo 6 caracteres
             </div>
             <div *ngIf="formLogin.get('password')?.hasError('maxlength')" class="text-danger">
               Máximo 6 caracteres
-            </div>
+            </div> -->
             <div *ngIf="formLogin.get('password')?.valid" class="text-success">
               OK
             </div>

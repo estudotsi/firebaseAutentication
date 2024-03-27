@@ -14,13 +14,15 @@ import { jsPDF } from 'jspdf';
 })
 export class ListarRepertorioComponent implements OnInit{
 
-  repertorios?: any;
+  repertorios: Repertorio[] = [];
   modalRef?: BsModalRef;
   idDelete?: any;
   page: number = 1;
   count: number = 0;
   tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
+  public repertoriosFiltrados: Repertorio[] = [];
+  private filtroListado = '';
 
   constructor(private repertorioService: RepertorioService,
               private modalService: BsModalService,
@@ -32,12 +34,31 @@ export class ListarRepertorioComponent implements OnInit{
     this.spinner.show();
     this.buscarRepertorios();
   }
+  public get filtroLista(): string {
+    return this.filtroListado;
+  }
+
+  public set filtroLista(value: string) {
+    this.filtroListado = value;
+    this.repertoriosFiltrados = this.filtroLista
+      ? this.filtrarEventos(this.filtroLista)
+      : this.repertorios;
+  }
+
+  public filtrarEventos(filtrarPor: string): Repertorio[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.repertorios.filter(
+      (repertorio) =>
+        repertorio.dirigente.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
+  }
+
 
   public buscarRepertorios(): void{
-    this.repertorioService.geeAllRepertorios().subscribe({
+    this.repertorioService.getAllRepertorios().subscribe({
       next: (repertorioRecebido: Repertorio[]) => {
         this.repertorios = repertorioRecebido;
-        console.log("Teste: ", this.repertorios);
+        this.repertoriosFiltrados = this.repertorios
         this.spinner.hide();
       },
       error: (error: any) => {
@@ -97,6 +118,11 @@ export class ListarRepertorioComponent implements OnInit{
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
     this.idDelete = id;
   }
+
+  enviarDadosAlterarRepertorio(id: any){
+    this.router.navigate([`/alterar-repertorio/${id}`]);
+  }
+
 
   confirme() {
     this.modalRef?.hide();

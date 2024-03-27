@@ -8,12 +8,12 @@
                 <div class="input-group-text">Filtro: </div>
             </div>
             <!-- <input type="text" class="form-control" placeholder="Filtrar por nome" [(ngModel)]="filtroLista"> -->
-            <input type="text" class="form-control" placeholder="Filtrar pelo nome da música" [(ngModel)]="filtroLista">
+            <input type="text" class="form-control" placeholder="Filtrar pelo nome do usuário" [(ngModel)]="filtroLista">
         </div>
     </div>
     <div class="custom-search">
         <a class="d-flex btn btn-outline-primary">
-            <b class="ml-1 d-none d-sm-block" routerLink="/cadastrar-musicas"><i class="bi bi-plus-circle-fill custom-icon-circle-fill"></i>Novo</b>
+            <b class="ml-1 d-none d-sm-block" routerLink="/cadastrar-usuarios"><i class="bi bi-plus-circle-fill custom-icon-circle-fill"></i>Novo</b>
             <i class="bi bi-plus-circle-fill custom-icon-circle-fill-mobile" routerLink="/cadastrar-usuarios"></i>
         </a>
     </div>
@@ -35,7 +35,13 @@
 
           <ng-container>
 
-              <tr *ngFor="let usuario of usuarios">
+              <tr *ngFor="let usuario of usuariosFiltrados | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index">
                   <!-- <td class="d-none d-md-table-cell"><img src="https://localhost:7284/resources/images/{{item.imagemURL}}" width="120px" height="60px" alt=""></td> -->
                   <td>{{usuario.nome}}</td>
                   <td>{{usuario.codinome}}</td>
@@ -77,6 +83,8 @@
         </div>
     </div>
 </ng-template>
-
+<div class="d-flex justify-content-center bgc-white mb-3 p-2">
+  <pagination-controls previousLabel="Anterior" nextLabel="Próxima"(pageChange)="onTableDataChange($event)"></pagination-controls>
+</div>
 </div>
 

@@ -13,9 +13,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListarUsuariosComponent implements OnInit{
 
-  usuarios?: Usuario[];
+  usuarios: Usuario[] = [];
   modalRef?: BsModalRef;
   idDelete?: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [3, 6, 9, 12];
+  public usuariosFiltrados: Usuario[] = [];
+  private filtroListado = '';
 
   constructor(private usuarioService: UsuarioService,
               private modalService: BsModalService,
@@ -29,14 +35,30 @@ ngOnInit(): void {
   }
 
   public get filtroLista(): string {
-    return "";
+    return this.filtroListado;
+  }
+
+  public set filtroLista(value: string) {
+    this.filtroListado = value;
+    this.usuariosFiltrados = this.filtroLista
+      ? this.filtrarEventos(this.filtroLista)
+      : this.usuarios;
+  }
+
+  public filtrarEventos(filtrarPor: string): Usuario[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.usuarios.filter(
+      (usuario) =>
+        usuario.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
   }
 
 
   public buscarUsuarios(): void{
-    this.usuarioService.geeAllUsuarios().subscribe({
+    this.usuarioService.getAllUsuarios().subscribe({
       next: (usuarioRecebido: Usuario[]) => {
         this.usuarios = usuarioRecebido;
+        this.usuariosFiltrados = this.usuarios
         this.spinner.hide();
       },
       error: (error: any) => {
@@ -75,5 +97,14 @@ ngOnInit(): void {
     this.idDelete = id;
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.buscarUsuarios();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.buscarUsuarios();
+  }
 
 }

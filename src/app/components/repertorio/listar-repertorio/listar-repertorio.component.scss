@@ -111,6 +111,14 @@ ul {
   justify-content: space-around;
 }
 
+.custom-search {
+  margin-left: 10px;
+}
+
+.custom-icon-circle-fill {
+  margin-right: 5px;
+}
+
 @media (max-width: 563px) {
   ul {
     margin-left: 0px;
@@ -118,5 +126,11 @@ ul {
 
   .custom-buttons {
     margin-top: 15px;
+  }
+}
+
+@media (min-width: 563px) {
+  .custom-icon-circle-fill-mobile {
+    display: none;
   }
 }

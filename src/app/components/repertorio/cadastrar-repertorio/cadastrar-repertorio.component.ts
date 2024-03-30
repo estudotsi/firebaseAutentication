@@ -39,13 +39,13 @@ export class CadastrarRepertorioComponent implements OnInit{
   ngOnInit(): void {
     this.formRepertorio = this.formBuilder.group({
       id: ['',],
-      data: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      dirigente: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      musica1: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
-      musica2: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
-      musica3: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
-      musica4: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
-      musica5: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(80)]],
+      data: ['', [Validators.required]],
+      dirigente: ['', [Validators.required]],
+      musica1: [''],
+      musica2: [''],
+      musica3: [''],
+      musica4: [''],
+      musica5: ['']
     });
 
     this.spinner.show();
